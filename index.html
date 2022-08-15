@@ -45,7 +45,7 @@
   <div class="row" style="text-align:center">
    <div class="card">
     <h2>About Me</h2>
-    <img src="assets/OftenGuy.jpg" style="border-radius:50%">
+    <img src="assets/OftenGuy.jpg" style="border-radius:50%" id="OftenGuy">
     <p>I'm <strong>OftenGuy,</strong> or more famously known as <strong>MWB.</strong></p>
    </div>
   </div>
@@ -132,6 +132,17 @@
     margin: -1.5rem 0 1.5rem;
     padding: 1.5rem .5rem;
     margin-top: 72.5px;
+   }
+   #OftenGuy {
+    animation: rotateMyself 3s ease-in-out;
+   }
+   @keyframes rotateMyself {
+    from {
+     transform: rotate(0deg);
+    }
+    to {
+     transform: rotate(360deg);
+    }
    }
   </style>
  </body>
