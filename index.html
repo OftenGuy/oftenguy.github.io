@@ -348,7 +348,7 @@
   </div>
   <p id="buildCountAsOfStart" style="opacity: 0; color: rgba(255, 255, 255, 0);"></p>
   <div class="footer" style="text-align: center; height: 150px;">
-   <p><b>&copy; July 5, 2022-<span id="month">MONTH</span>&nbsp;<span id="day">DAY</span>,&nbsp;<span id="year">YEAR</span> OftenGuy &copy;</b></p><little>V1 Build <span id="build">BUILD</span></little><p style="font-size: 10; display: none;" id="updated">(Updated, refresh)</p><hr style="opacity: 0; color: rgba(128, 128, 128, 0);">
+   <p><b>&copy; July 5, 2022-<span id="month">MONTH</span>&nbsp;<span id="day">DAY</span>,&nbsp;<span id="year">YEAR</span> OftenGuy &copy;</b></p><little>V1 Build <span id="build">BUILD</span></little><br><br><a style="font-size: 10; text-decoration: underline; color: #111111; display: none;" id="updated" href="https://oftenguy.github.io" title="Refresh to see current website version">(Updated, refresh)</a><hr style="opacity: 0; color: rgba(128, 128, 128, 0);">
    <a href="https://youtube.com/channel/UCu7a0qLsRb1TNutICA1EZuw?sub_confirmation=1" title="YouTube" id="footerIcon1" target="_blank"><span class="iconify" data-icon="simple-icons:youtube"><noscript>YouTube</noscript></span></a>&nbsp;&nbsp;&nbsp;
    <a href="https://scratch.mit.edu/users/OftenScratcher" title="Scratch" id="footerIcon2" target="_blank"><span class="iconify" data-icon="simple-icons:scratch"><noscript>Scratch</noscript></span></a>&nbsp;&nbsp;&nbsp;
    <a href="https://roblox.com/users/3445717475/profile" title="Roblox" id="footerIcon3" target="_blank"><span class="iconify" data-icon="simple-icons:roblox"><noscript>Roblox</noscript></span></a>&nbsp;&nbsp;&nbsp;
@@ -546,11 +546,14 @@
 	 <script>
      	 var request = new XMLHttpRequest();
          var startBuildCount = document.getElementById("buildCountAsOfStart");
+         var build = document.getElementById("build");
+         // var commitCount = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
 		 setTimeout(function() {
 			 document.getElementById("oftenGuyVideoPlayer").click();
 		 }, 2000);
          setTimeout(function() {
-         	 startBuildCount.innerHTML = document.getElementById("build").innerHTML;
+         	 startBuildCount.innerHTML = build.innerHTML;
+             // startBuildCount.innerText = parseInt(document.getElementById("build").innerHTML);
          }, 10);
          setInterval(function() {
          	 const date = new Date();
@@ -566,14 +569,24 @@
 			 request.open('GET', 'https://api.github.com/repos/OftenGuy/oftenguy.github.io/commits?per_page=1', false);
 			 request.send(null);
 			 request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
-			 document.getElementById("build").innerText =  request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
+			 build.innerHTML = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
 			 console.log(request);
+             // build.innerHTML = parseFloat(request.getRespondHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1]);
          }, 1);
          setInterval(function() {
-         	if (document.getElementById("build").innerHTML = startBuildCount.innerHTML) {
-             	 document.getElementById("updated").style.display = "none";
-            } else if (document.getElementById("build").innerHTML != startBuildCount.innerHTML) {
-             	 document.getElementById("updated").style.display = "block";
+         	// if (document.getElementById("build").innerHTML = startBuildCount.innerHTML) {
+            //  	 document.getElementById("updated").style.display = "none";
+            // } else if (document.getElementById("build").innerHTML != startBuildCount.innerHTML) {
+            //  	 document.getElementById("updated").style.display = "block";
+            // }
+            // document.getElementById("updated").style.display = "block";
+            if (build.innerHTML = startBuildCount.innerHTML) {
+            	document.getElementById("updated").style.display = "none";
+                console.log(build.innerHTML = startBuildCount.innerHTML);
+            }
+            if (build.innerHTML != startBuildCount.innerHTML) {
+            	document.getElementById("updated").style.display = "block";
+                console.log(build.innerHTML = startBuildCount.innerHTML);
             }
          }, 10);
 	 </script>
