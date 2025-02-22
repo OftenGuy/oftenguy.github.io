@@ -346,7 +346,7 @@
     <p>Get yo musty digits off mah back! Did you forget who I am? How DARE you place them upon me... <b><i>(It's a website based on that meme)</i></b>.</p>
    </div>
   </div>
-  <!-- <p id="buildCountAsOfStart" style="opacity: 0; color: rgba(255, 255, 255, 0);"></p> -->
+  <p id="buildCountAsOfStart" style="opacity: 0; color: rgba(255, 255, 255, 0);"></p>
   <div class="footer" style="text-align: center; height: 150px;">
    <p><b>&copy; July 5, 2022-<span id="month">MONTH</span>&nbsp;<span id="day">DAY</span>,&nbsp;<span id="year">YEAR</span> OftenGuy &copy;</b></p><little>V1 Build <span id="build">BUILD</span></little><br><br><a style="font-size: 10; text-decoration: underline; color: #111111; display: none;" id="updated" href="https://oftenguy.github.io" title="Refresh to see current website version">(Updated, refresh)</a><hr style="opacity: 0; color: rgba(128, 128, 128, 0);">
    <a href="https://youtube.com/channel/UCu7a0qLsRb1TNutICA1EZuw?sub_confirmation=1" title="YouTube" id="footerIcon1" target="_blank"><span class="iconify" data-icon="simple-icons:youtube"><noscript>YouTube</noscript></span></a>&nbsp;&nbsp;&nbsp;
@@ -548,6 +548,7 @@
          // var startBuildCount = document.getElementById("buildCountAsOfStart");
          var build = document.getElementById("build");
          // var commitCount = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
+         var startBuild;
 		 setTimeout(function() {
 			 document.getElementById("oftenGuyVideoPlayer").click();
 		 }, 2000);
@@ -555,6 +556,11 @@
          	 // startBuildCount.innerHTML = build.innerHTML;
              // startBuildCount.innerText = parseInt(document.getElementById("build").innerHTML);
          // }, 10);
+         setTimeout(function() {
+         	 startBuild = parseInt(build.innerHTML);
+             console.log(startBuild);
+             // build.innerHTML = build.innerHTML + startBuild.toString();
+         }, 10);
          setInterval(function() {
          	 const date = new Date();
              const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -570,7 +576,7 @@
 			 request.send(null);
 			 request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
 			 build.innerHTML = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
-			 console.log(request);
+			 // console.log(request);
              // build.innerHTML = parseFloat(request.getRespondHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1]);
          }, 1);
          // setInterval(function() {
@@ -593,6 +599,14 @@
                 // console.log(startBuildCount.innerHTML);
             // }
          // }, 10);
+         setInterval(function() {
+         	 if (!(build.innerHTML = startBuild.toString())) {
+             	document.getElementById("updated").style.display = "block";
+             }
+             if (build.innerHTML = startBuild.toString()) {
+             	document.getElementById("updated").style.display = "none";
+             }
+         }, 10);
 	 </script>
 	 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5011706176462974"
      crossorigin="anonymous"></script>
