@@ -572,7 +572,7 @@
          setInterval(function() {
          	if (document.getElementById("build").innerHTML = startBuildCount.innerHTML) {
              	 document.getElementById("updated").style.display = "none";
-            } else {
+            } else if (document.getElementById("build").innerHTML != startBuildCount.innerHTML) {
              	 document.getElementById("updated").style.display = "block";
             }
          }, 10);
