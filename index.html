@@ -572,13 +572,19 @@
              document.getElementById("day").innerHTML = day;
          	 document.getElementById("year").innerHTML = year;
          }, 1);
+	 request.open('GET', 'https://api.github.com/repos/OftenGuy/oftenguy.github.io/commits?per_page=1', false);
+	 request.send(null);
+	 request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
+	 build.innerHTML = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
+	 console.log(request);
+         build.innerHTML = parseFloat(request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1]);
          setInterval(function() {
 			 request.open('GET', 'https://api.github.com/repos/OftenGuy/oftenguy.github.io/commits?per_page=1', false);
 			 request.send(null);
 			 request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
 			 build.innerHTML = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
 			 console.log(request);
-             build.innerHTML = parseFloat(request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1]);
+             		 build.innerHTML = parseFloat(request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1]);
          }, 1000);
          // setInterval(function() {
          	// if (document.getElementById("build").innerHTML = startBuildCount.innerHTML) {
