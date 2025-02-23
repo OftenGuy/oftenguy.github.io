@@ -647,32 +647,31 @@
     const buildElement = document.getElementById("build");
     const updatedMessage = document.getElementById("updated");
 
-    if (!buildElement) return; // Stop if #build doesn't exist
+    if (!buildElement) return;
 
     function checkForUpdate() {
         fetch("https://api.github.com/repos/OftenGuy/oftenguy.github.io/commits")
             .then(response => response.json())
             .then(data => {
                 if (data.length > 0) {
-                    const latestCommit = data[0].sha; // Latest commit hash
-                    const commitCount = data.length;  // Total number of commits
+                    const latestCommit = data[0].sha;
+                    const commitCount = data.length;
 
-                    buildElement.innerText = commitCount; // Update build number
+                    buildElement.innerText = commitCount;
 
-                    // Check if the commit has changed since last visit
                     const lastCommit = localStorage.getItem("lastCommit");
                     if (lastCommit && lastCommit !== latestCommit) {
-                        updatedMessage.style.display = "block"; // Show "(Updated, refresh)"
+                        updatedMessage.style.display = "block";
                     }
 
-                    localStorage.setItem("lastCommit", latestCommit); // Store commit for next visit
+                    localStorage.setItem("lastCommit", latestCommit);
                 }
             })
             .catch(error => console.error("Error fetching commit data:", error));
     }
 
-    checkForUpdate(); // Run on page load
-    setInterval(checkForUpdate, 30000); // Check every 30 seconds
+    checkForUpdate();
+    setInterval(checkForUpdate, 5000);
 });
 });
 	 </script>
