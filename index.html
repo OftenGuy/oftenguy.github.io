@@ -18,8 +18,8 @@
 		<meta name="msapplication-TileImage" type="image/x-icon" content="assets/OftenGuySprite.ico" title="OftenGuy">
 		<meta name="msapplication-TileImage" type="image/x-icon" content="/assets/OftenGuySprite.ico" title="OftenGuy">
 		<meta name="msapplication-TileColor" content="#FFCC66">
+  		<meta name="mobile-apple-web-app-capable" content="yes">
   		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	 	<meta name="mobile-apple-web-app-capable" content="yes">
 	 	<meta name="google-adsense-account" content="ca-pub-5011706176462974">
 		<meta name="referrer" content="origin">
 		<meta name="color-scheme" content="light">
@@ -576,9 +576,9 @@
 			 request.open('GET', 'https://api.github.com/repos/OftenGuy/oftenguy.github.io/commits?per_page=1', false);
 			 request.send(null);
 			 request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
-			 // build.innerHTML = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
-			 // console.log(request);
-             // build.innerHTML = parseFloat(request.getRespondHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1]);
+			 build.innerHTML = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
+			 console.log(request);
+             build.innerHTML = parseFloat(request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1]);
          }, 1000);
          // setInterval(function() {
          	// if (document.getElementById("build").innerHTML = startBuildCount.innerHTML) {
@@ -639,7 +639,7 @@
          checkForUpdate();
          
          setInterval(checkForUpdate, 3000); */
-         document.addEventListener("DOMContentLoaded", function () {
+         /* document.addEventListener("DOMContentLoaded", function () {
          var build = document.getElementById("build");
          var updatedMessage = document.getElementById("updated");
 
@@ -673,7 +673,7 @@
     checkForUpdate();
     setInterval(checkForUpdate, 5000);
 });
-});
+}); */
 	 </script>
 	 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5011706176462974"
      crossorigin="anonymous"></script>
