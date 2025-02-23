@@ -549,6 +549,7 @@
          var build = document.getElementById("build");
          // var commitCount = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
          var startBuild;
+         var updated = document.getElementById("updated");
 		 setTimeout(function() {
 			 document.getElementById("oftenGuyVideoPlayer").click();
 		 }, 2000);
@@ -577,7 +578,7 @@
 			 request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
 			 build.innerHTML = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
 			 // console.log(request);
-             // build.innerHTML = parseFloat(request.getRespondHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1]);
+             build.innerHTML = parseFloat(request.getRespondHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1]);
          }, 1);
          // setInterval(function() {
          	// if (document.getElementById("build").innerHTML = startBuildCount.innerHTML) {
@@ -599,14 +600,80 @@
                 // console.log(startBuildCount.innerHTML);
             // }
          // }, 10);
-         setInterval(function() {
-         	 if (!(build.innerHTML = startBuild.toString())) {
-             	document.getElementById("updated").style.display = "block";
+         /* setInterval(function() {
+         	 if (build.innerHTML === startBuild.toString()) {
+             	// document.getElementById("updated").style.display = "block";
+                build.innerHTML = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1] + "<br><br><a href='https://oftenguy.github.io' title='Refresh to see current website version' style='font-size: 10; text-decoration: underline; color: #111111;'>(Updated, refresh)</a>";
+             }
+             if (build.innerHTML != startBuild.toString()) {
+             	build.innerHTML = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
              }
              // if (build.innerHTML = startBuild.toString()) {
              	// document.getElementById("updated").style.display = "none";
              // }
-         }, 10);
+         }, 10); */
+         /* function checkForUpdate() {
+         	 request = new XMLHttpRequest();
+             reqest.open('GET', 'https://api.github.com/repos/OftenGuy/oftenguy.github.io/commits?per_page=1', true);
+             // build.innerHTML = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last")/)[1];
+             request.onload = function() {
+             	 if (request.status === 200) {
+                 	 var response = JSON.parse(request.responseText);
+                     var latestCommit = response[0].sha;
+                     var commitCount = response.length;
+                     var storedCommit = localStorage.getItem("lastCommit");
+                     
+                     build.innerHTML = commitCount;
+                     
+                     if (storedCommit && storedCommit != latestCommit) {
+                     	 updated.style.display = "block";
+                     }
+                     
+                     localStorage.setItem("lastCommit", latestCommit);
+                 }
+             };
+             
+             request.send();
+         }
+         
+         checkForUpdate();
+         
+         setInterval(checkForUpdate, 3000); */
+         document.addEventListener("DOMContentLoaded", function () {
+
+    function checkForUpdate() {
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://api.github.com/repos/OftenGuy/oftenguy.github.io/commits?per_page=100', true);
+
+        request.onload = function() {
+            if (request.status === 200) {
+                var response = JSON.parse(request.responseText);
+                
+                var latestCommit = response[0].sha;
+
+                var commitCount = response.length;
+
+                var storedCommit = localStorage.getItem("lastCommit");
+
+                if (build) {
+                    build.innerText = commitCount;
+                }
+
+                if (storedCommit && storedCommit !== latestCommit) {
+                    updated.style.display = "block";
+                }
+
+                localStorage.setItem("lastCommit", latestCommit);
+            }
+        };
+
+        request.send();
+    }
+
+    checkForUpdate();
+
+    setInterval(checkForUpdate, 1000);
+});
 	 </script>
 	 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5011706176462974"
      crossorigin="anonymous"></script>
