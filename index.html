@@ -576,10 +576,10 @@
 			 request.open('GET', 'https://api.github.com/repos/OftenGuy/oftenguy.github.io/commits?per_page=1', false);
 			 request.send(null);
 			 request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
-			 build.innerHTML = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
+			 // build.innerHTML = request.getResponseHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1];
 			 // console.log(request);
-             build.innerHTML = parseFloat(request.getRespondHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1]);
-         }, 1);
+             // build.innerHTML = parseFloat(request.getRespondHeader('link').match(/"next".*page=([0-9]+).*"last"/)[1]);
+         }, 1000);
          // setInterval(function() {
          	// if (document.getElementById("build").innerHTML = startBuildCount.innerHTML) {
             //  	 document.getElementById("updated").style.display = "none";
@@ -640,39 +640,40 @@
          
          setInterval(checkForUpdate, 3000); */
          document.addEventListener("DOMContentLoaded", function () {
+         var build = document.getElementById("build");
+         var updatedMessage = document.getElementById("updated");
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const buildElement = document.getElementById("build");
+    const updatedMessage = document.getElementById("updated");
+
+    if (!buildElement) return; // Stop if #build doesn't exist
 
     function checkForUpdate() {
-        var request = new XMLHttpRequest();
-        request.open('GET', 'https://api.github.com/repos/OftenGuy/oftenguy.github.io/commits?per_page=100', true);
+        fetch("https://api.github.com/repos/OftenGuy/oftenguy.github.io/commits")
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    const latestCommit = data[0].sha; // Latest commit hash
+                    const commitCount = data.length;  // Total number of commits
 
-        request.onload = function() {
-            if (request.status === 200) {
-                var response = JSON.parse(request.responseText);
-                
-                var latestCommit = response[0].sha;
+                    buildElement.innerText = commitCount; // Update build number
 
-                var commitCount = response.length;
+                    // Check if the commit has changed since last visit
+                    const lastCommit = localStorage.getItem("lastCommit");
+                    if (lastCommit && lastCommit !== latestCommit) {
+                        updatedMessage.style.display = "block"; // Show "(Updated, refresh)"
+                    }
 
-                var storedCommit = localStorage.getItem("lastCommit");
-
-                if (build) {
-                    build.innerText = commitCount;
+                    localStorage.setItem("lastCommit", latestCommit); // Store commit for next visit
                 }
-
-                if (storedCommit && storedCommit !== latestCommit) {
-                    updated.style.display = "block";
-                }
-
-                localStorage.setItem("lastCommit", latestCommit);
-            }
-        };
-
-        request.send();
+            })
+            .catch(error => console.error("Error fetching commit data:", error));
     }
 
-    checkForUpdate();
-
-    setInterval(checkForUpdate, 1000);
+    checkForUpdate(); // Run on page load
+    setInterval(checkForUpdate, 30000); // Check every 30 seconds
+});
 });
 	 </script>
 	 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5011706176462974"
