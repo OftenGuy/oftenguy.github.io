@@ -7,112 +7,107 @@
 <title>Wormy Text Generator</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to bottom, #F1F1F1, #E9E9E9);
-        color: #222;
-        padding: 25px;
-    }
+body {
+    font-family: Arial, sans-serif;
+    background: #F1F1F1;
+    color: #222;
+    padding: 25px;
+}
 
-    .container {
-        max-width: 700px;
-        margin: auto;
-    }
+.container {
+    max-width: 700px;
+    margin: auto;
+}
 
-    h2 {
-        margin-bottom: 20px;
-    }
+h2 {
+    margin-bottom: 20px;
+}
 
-    label {
-        display: block;
-        margin-top: 15px;
-        font-weight: bold;
-    }
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
 
-    textarea, select {
-        width: 100%;
-        padding: 10px;
-        margin-top: 7px;
-        font: inherit;
-        border: 1px solid #CCC;
-        background: linear-gradient(to bottom, #FFFFFF, #EEEEEE);
-        border-radius: 5px;
-    }
+textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 7px;
+    font: inherit;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+}
 
-    input[type="range"] {
-        width: 100%;
-        margin-top: 10px;
-    }
+input[type="range"] {
+    width: 100%;
+    margin-top: 10px;
+}
 
-    input[type="color"] {
-        width: 55px;
-        height: 35px;
-        margin-top: 7px;
-        cursor: pointer;
-    }
+input[type="color"] {
+    width: 55px;
+    height: 35px;
+    margin-top: 7px;
+    cursor: pointer;
+}
 
-    .preview {
-        background: white;
-        border: 1px solid #CCC;
-        border-radius: 6px;
-        padding: 25px;
-        min-height: 100px;
-        overflow-wrap: anywhere;
-        font-family: serif;
-        font-size: 26px;
-        line-height: 2;
-    }
+.preview {
+    background: white;
+    border: 1px solid #CCC;
+    border-radius: 6px;
+    padding: 25px;
+    min-height: 100px;
+    overflow-wrap: anywhere;
+    font-family: serif;
+    font-size: 26px;
+    line-height: 2;
+}
 
-    .char {
-        display: inline-block;
-        white-space: pre;
-    }
+.char {
+    display: inline-block;
+    white-space: pre;
+}
 
-    button {
-        padding: 11px 18px;
-        border: none;
-        border-radius: 5px;
-        background: linear-gradient(to bottom, #666 0%, #555 25%, #333 50%, #222 100%);
-        color: white;
-        cursor: pointer;
-        margin-top: 12px;
-        margin-right: 5px;
-    }
+button {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    margin-top: 12px;
+    margin-right: 5px;
+}
 
-    button:hover {
-        background: #555;
-    }
+button:hover {
+    background: #555;
+}
 
-    .color-settings {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        padding: 12px;
-        background: #E8E8E8;
-        border-radius: 6px;
-        margin-top: 10px;
-    }
+.color-settings {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 12px;
+    background: #E8E8E8;
+    border-radius: 6px;
+    margin-top: 10px;
+}
 
-    .color-settings label {
-        margin-top: 0;
-    }
+.color-settings label {
+    margin-top: 0;
+}
 
-    .output {
-        margin-top: 20px;
-    }
+.value {
+    font-weight: normal;
+    color: #666;
+}
 
-    .hidden {
-        display: none;
-    }
-
-    .value {
-        font-weight: normal;
-        color: #666;
-    }
+h3 {
+    margin-top: 25px;
+}
 </style>
 </head>
 
@@ -122,16 +117,16 @@
 
 <h2>Wormy Text Generator</h2>
 
-<label>Text</label>
+<label for="input">Text</label>
 <textarea id="input" rows="3">can you do the woooooooooooooooooorm?</textarea>
 
-<label>Worm Pattern</label>
+<label for="pattern">Worm Pattern</label>
 <select id="pattern">
-    <option value="random" title="Random">Random</option>
-    <option value="perfect" title="Perfect Worm" selected>Perfect Worm</option>
-    <option value="reverse" title="Reverse Worm">Reverse Worm</option>
-    <option value="sine" title="Smooth Wave">Smooth Wave</option>
-    <option value="flat" title="Flat">Flat</option>
+    <option value="random">Random</option>
+    <option value="perfect" selected>Perfect Worm</option>
+    <option value="reverse">Reverse Worm</option>
+    <option value="sine">Smooth Wave</option>
+    <option value="flat">Flat</option>
 </select>
 
 <label>
@@ -144,30 +139,30 @@
 </label>
 <input type="range" id="wave" min="2" max="30" value="8">
 
-<label>Color Pattern</label>
+<label for="colorPattern">Color Pattern</label>
 <select id="colorPattern">
-    <option value="none" title="None">None</option>
-    <option value="rainbow" title="Rainbow">Rainbow</option>
-    <option value="gradient" title="Gradient">Gradient</option>
-    <option value="alternating" title="Alternating">Alternating</option>
-    <option value="custom" title="Custom Colors">Custom Colors</option>
+    <option value="none">None</option>
+    <option value="rainbow">Rainbow</option>
+    <option value="gradient">Gradient</option>
+    <option value="alternating">Alternating</option>
+    <option value="custom">Custom Colors</option>
 </select>
 
-<div class="color-settings" id="colorSettings">
+<div class="color-settings">
 
     <div>
-        <label>Color 1</label>
-        <input type="color" id="color1" value="#FF0000">
+        <label for="color1">Color 1</label>
+        <input type="color" id="color1" value="#ff0000">
     </div>
 
     <div>
-        <label>Color 2</label>
-        <input type="color" id="color2" value="#00FF00">
+        <label for="color2">Color 2</label>
+        <input type="color" id="color2" value="#0000ff">
     </div>
 
     <div>
-        <label>Color 3</label>
-        <input type="color" id="color3" value="#0000FF">
+        <label for="color3">Color 3</label>
+        <input type="color" id="color3" value="#00ff00">
     </div>
 
 </div>
@@ -177,32 +172,31 @@
 </label>
 <input type="range" id="fontSize" min="12" max="60" value="26">
 
-<label>Font Family</label>
+<label for="font">Font Family</label>
 <select id="font">
-    <option value="serif" title="Serif">Serif</option>
-    <option value="Arial, sans-serif" title="Arial">Arial</option>
-    <option value="'Times New Roman', serif" title="Times New Roman">Times New Roman</option>
-    <option value="monospace" title="Monospace">Monospace</option>
-    <option value="cursive" title="Cursive">Cursive</option>
+    <option value="serif">Serif</option>
+    <option value="Arial, sans-serif">Arial</option>
+    <option value="'Times New Roman', serif">Times New Roman</option>
+    <option value="monospace">Monospace</option>
+    <option value="cursive">Cursive</option>
 </select>
 
 <h3>Preview</h3>
 <div class="preview" id="preview"></div>
 
-<button id="regenerate" title="Regenerate">Regenerate</button>
-<button id="copy" title="Copy LaTeX">Copy LaTeX</button>
-<button id="copyText" title="Copy Plain Text">Copy Plain Text</button>
+<button id="regenerate">Regenerate</button>
+<button id="copy">Copy LaTeX</button>
+<button id="copyText">Copy Plain Text</button>
 
-<div class="output">
-    <h3>LaTeX Output</h3>
-    <textarea id="output" rows="7" readonly></textarea>
-</div>
+<h3>LaTeX Output</h3>
+<textarea id="output" rows="10" readonly></textarea>
 
 </div>
 
 <script>
 const $ = id => document.getElementById(id);
 
+// Convert HEX to RGB
 function hexToRgb(hex) {
     return {
         r: parseInt(hex.slice(1, 3), 16),
@@ -211,29 +205,34 @@ function hexToRgb(hex) {
     };
 }
 
+// Blend two colors
 function mixColors(c1, c2, amount) {
     const a = hexToRgb(c1);
     const b = hexToRgb(c2);
 
     const r = Math.round(a.r + (b.r - a.r) * amount);
     const g = Math.round(a.g + (b.g - a.g) * amount);
-    const bValue = Math.round(a.b + (b.b - a.b) * amount);
+    const blue = Math.round(a.b + (b.b - a.b) * amount);
 
-    return `rgb(${r}, ${g}, ${bValue})`;
+    return `rgb(${r}, ${g}, ${blue})`;
 }
 
+// Generate colors
 function getColor(i, total, pattern) {
     const c1 = $("color1").value;
     const c2 = $("color2").value;
     const c3 = $("color3").value;
 
     switch (pattern) {
-
         case "rainbow":
             return `hsl(${(i * 360 / 12) % 360}, 100%, 50%)`;
 
         case "gradient":
-            return mixColors(c1, c2, i / Math.max(total - 1, 1));
+            return mixColors(
+                c1,
+                c2,
+                i / Math.max(total - 1, 1)
+            );
 
         case "alternating":
             return i % 2 === 0 ? c1 : c2;
@@ -242,11 +241,11 @@ function getColor(i, total, pattern) {
             return [c1, c2, c3][i % 3];
 
         default:
-            return "inherit";
+            return "#000000";
     }
 }
 
-// Escape special LaTeX characters
+// Escape LaTeX special characters
 function escapeLatex(char) {
     const replacements = {
         "\\": "\\textbackslash{}",
@@ -262,9 +261,59 @@ function escapeLatex(char) {
         " ": "\\ "
     };
 
-    return replacements[char] || char;
+    return replacements[char] ?? char;
 }
 
+// Convert a color to LaTeX RGB values
+function colorToLatex(color) {
+    if (color.startsWith("#")) {
+        const rgb = hexToRgb(color);
+        return `${rgb.r},${rgb.g},${rgb.b}`;
+    }
+
+    const rgb = color.match(
+        /rgb\((\d+),\s*(\d+),\s*(\d+)\)/
+    );
+
+    if (rgb) {
+        return `${rgb[1]},${rgb[2]},${rgb[3]}`;
+    }
+
+    const hsl = color.match(
+        /hsl\(([\d.]+),\s*([\d.]+)%,\s*([\d.]+)%\)/
+    );
+
+    if (hsl) {
+        // Convert HSL to RGB for LaTeX
+        const hue = Number(hsl[1]) / 360;
+        const sat = Number(hsl[2]) / 100;
+        const light = Number(hsl[3]) / 100;
+
+        const c = (1 - Math.abs(2 * light - 1)) * sat;
+        const x = c * (1 - Math.abs((hue * 6) % 2 - 1));
+        const m = light - c / 2;
+
+        let r = 0, g = 0, b = 0;
+        const sector = Math.floor(hue * 6);
+
+        if (sector === 0) [r,g,b] = [c,x,0];
+        else if (sector === 1) [r,g,b] = [x,c,0];
+        else if (sector === 2) [r,g,b] = [0,c,x];
+        else if (sector === 3) [r,g,b] = [0,x,c];
+        else if (sector === 4) [r,g,b] = [x,0,c];
+        else [r,g,b] = [c,0,x];
+
+        return [
+            Math.round((r + m) * 255),
+            Math.round((g + m) * 255),
+            Math.round((b + m) * 255)
+        ].join(",");
+    }
+
+    return "0,0,0";
+}
+
+// Generate text
 function generate() {
 
     const text = $("input").value;
@@ -281,13 +330,17 @@ function generate() {
     preview.style.fontSize = fontSize + "px";
     preview.style.fontFamily = $("font").value;
 
-    let latex = "$$\\textsf{";
+    let latexCharacters = "";
 
     for (let i = 0; i < text.length; i++) {
+
         const char = text[i];
+
+        // Worm positioning
         let offset = 0;
 
         switch (pattern) {
+
             case "random":
                 offset = (Math.random() * 2 - 1) * height;
                 break;
@@ -308,19 +361,49 @@ function generate() {
 
         offset = Math.round(offset);
 
+        // Character color
+        const color = getColor(
+            i,
+            text.length,
+            colorPattern
+        );
+
+        // Preview
         const span = document.createElement("span");
 
         span.className = "char";
         span.textContent = char;
         span.style.transform = `translateY(${-offset}px)`;
-        span.style.color = getColor(i, text.length, colorPattern);
+        span.style.color = color;
 
         preview.appendChild(span);
 
-        latex += `\\raisebox{${offset}pt}{${escapeLatex(char)}}`;
+        // LaTeX
+        const escaped = escapeLatex(char);
+
+        let latexChar =
+            `\\raisebox{${offset}pt}{${escaped}}`;
+
+        if (colorPattern !== "none") {
+            const rgb = colorToLatex(color);
+
+            latexChar =
+                `\\raisebox{${offset}pt}{\\textcolor[RGB]{${rgb}}{${escaped}}}`;
+        }
+
+        latexCharacters += latexChar;
     }
 
-    latex += "}$$";
+    // Complete LaTeX document
+    const latex =
+`\\documentclass{article}
+\\usepackage{xcolor}
+\\usepackage{graphicx}
+\\pagestyle{empty}
+
+\\begin{document}
+\\noindent\\textsf{${latexCharacters}}
+\\end{document}`;
 
     $("output").value = latex;
 
@@ -329,7 +412,7 @@ function generate() {
     $("fontValue").textContent = fontSize;
 }
 
-// Controls
+// Regenerate when settings change
 [
     "input",
     "height",
@@ -346,22 +429,44 @@ function generate() {
     $(id).addEventListener("change", generate);
 });
 
-// Buttons
+// Regenerate button
 $("regenerate").addEventListener("click", generate);
 
+// Copy LaTeX
 $("copy").addEventListener("click", async () => {
-    await navigator.clipboard.writeText($("output").value);
-    $("copy").textContent = "Copied!";
-    setTimeout(() => $("copy").textContent = "Copy LaTeX", 1200);
+    try {
+        await navigator.clipboard.writeText($("output").value);
+        $("copy").textContent = "Copied!";
+    } catch {
+        $("output").select();
+        document.execCommand("copy");
+        $("copy").textContent = "Copied!";
+    }
+
+    setTimeout(() => {
+        $("copy").textContent = "Copy LaTeX";
+    }, 1200);
 });
 
+// Copy plain text
 $("copyText").addEventListener("click", async () => {
-    await navigator.clipboard.writeText($("input").value);
-    $("copyText").textContent = "Copied!";
-    setTimeout(() => $("copyText").textContent = "Copy Plain Text", 1200);
+    try {
+        await navigator.clipboard.writeText($("input").value);
+        $("copyText").textContent = "Copied!";
+    } catch {
+        $("input").select();
+        document.execCommand("copy");
+        $("copyText").textContent = "Copied!";
+    }
+
+    setTimeout(() => {
+        $("copyText").textContent = "Copy Plain Text";
+    }, 1200);
 });
 
+// Initial generation
 generate();
+
 </script>
 
 </body>
