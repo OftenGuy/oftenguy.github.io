@@ -6,3 +6,5 @@ Website: <a target="_blank" title="OftenGuy's Website" href="https://oftenguy.gi
 YouTube: <a target="_blank" title="OftenGuy On YouTube" href="https://youtube.com/@OftenGuy?sub_confirmation=1">https://youtube.com/@OftenGuy?sub_confirmation=1</a>
 
 Online Sequencer: <a target="_blank" title="OftenGuy On Online Sequencer" href="https://onlinesequencer.net/members/128045">https://onlinesequencer.net/members/128045</a>
+
+The Often Clan (Stoat Server): <a target="_blank" title="The Often Clan (Stoat Server)" href="https://tinyurl.com/theoftenclan">https://tinyurl.com/theoftenclan</a>
